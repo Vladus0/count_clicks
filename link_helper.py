@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import argparse
 
 
-
 def shorten_link(api_token, link):
     url = "https://api.vk.ru/method/utils.getShortLink" 
     payload = {
@@ -18,7 +17,6 @@ def shorten_link(api_token, link):
     return response.json()["response"]["short_url"]
 
     
-
 def count_cliks(api_token, link): 
     parsed_link = urlparse(link) 
     key = parsed_link.path.split("/") 
@@ -31,8 +29,6 @@ def count_cliks(api_token, link):
     response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.json()["response"]["stats"][0]["views"] 
-
-
 
 
 def is_shorten_link(api_token, link): 
@@ -66,6 +62,7 @@ def main():
         print("Ссылка указана неверно")
     except IndexError:
         print("Кликов по ссылке не было")
+
 
 if __name__ == "__main__":
     main()
